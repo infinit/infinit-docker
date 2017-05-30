@@ -10,9 +10,9 @@ LABEL version="0.7.3"
 # Get the packages:
 #
 # - fuse is used to be able to mount infinit's volume.
-RUN apk update --no-cache fuse                                      \
-                          curl                                      \
-                          libstdc++                                 \
+RUN apk add --no-cache fuse                                         \
+                       curl                                         \
+                       libstdc++                                    \
     &&                                                              \
     curl -o infinit.tbz https://storage.googleapis.com/sh_infinit_releases/alpine/infinit-x86_64-alpine-gcc-${INFINIT_VERSION}.tbz \
     &&                                                              \
@@ -20,7 +20,9 @@ RUN apk update --no-cache fuse                                      \
     &&                                                              \
     echo "${INFINIT_SHA256} *infinit.tbz" | sha256sum -c -          \
     &&                                                              \
-    tar -C / --strip-components=1  -xvjf infinit.tbz
+    tar -C / --strip-components=1  -xvjf infinit.tbz                \
+    &&                                                              \
+    rm infinit.tbz
 
 ENTRYPOINT ["infinit"]
 

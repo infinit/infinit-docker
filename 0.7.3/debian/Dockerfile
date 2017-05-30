@@ -13,8 +13,10 @@ RUN apt-get update                                                      && \
                        software-properties-common                          \
                        apt-transport-https                              && \
     export GNUPGHOME="$(mktemp -d)"                                     && \
-    gpg --keyserver keyserver.ubuntu.com --recv-keys 3D2C3B0B           && \
-    gpg --export 3D2C3B0B > /etc/apt/trusted.gpg.d/infinit.sh.gpg       && \
+    gpg --keyserver keyserver.ubuntu.com                                   \
+        --recv-keys 6B302345264A43989D4EA9D25D81444E6821EB43            && \
+    gpg --export 6B302345264A43989D4EA9D25D81444E6821EB43                  \
+        > /etc/apt/trusted.gpg.d/infinit.sh.gpg                         && \
     add-apt-repository "deb https://debian.infinit.sh/ trusty main"     && \
     apt-get update                                                      && \
     apt-get install -y infinit=$INFINIT_VERSION                         && \
