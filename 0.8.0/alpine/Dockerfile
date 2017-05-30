@@ -24,6 +24,8 @@ RUN apk add --no-cache fuse                                         \
     &&                                                              \
     rm infinit.tbz
 
-ENTRYPOINT ["infinit"]
+COPY entrypoint.sh /
 
-CMD ["--help"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["infinit", "--help"]

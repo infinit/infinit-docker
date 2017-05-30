@@ -25,6 +25,8 @@ RUN apt-get update                                                      && \
 
 ENV PATH=/opt/infinit/bin:$PATH
 
-ENTRYPOINT ["infinit"]
+COPY entrypoint.sh /
 
-CMD ["--help"]
+ENTRYPOINT ["/entrypoint.sh"]
+
+CMD ["infinit", "--help"]
