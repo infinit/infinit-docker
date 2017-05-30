@@ -2,8 +2,9 @@ language: bash
 services: docker
 
 env:
+  - VERSION=0.8.0 VARIANT=debian
+  - VERSION=0.8.0 VARIANT=alpine
   - VERSION=0.7.3 VARIANT=debian
-  - VERSION=0.7.3 VARIANT=centos
   - VERSION=0.7.3 VARIANT=alpine
 
 install:

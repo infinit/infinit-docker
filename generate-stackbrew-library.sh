@@ -1,18 +1,19 @@
 #!/bin/bash
 set -eu
 
-declare -A latestVariant=(
+declare -A main=(
+	[0.8.0]='alpine'
 	[0.7.3]='alpine'
 )
 
 declare -A aliases=(
-    [0.7.3-alpine]='latest'
+    [0.8.0-alpine]='latest'
 )
 
 self="$(basename "$BASH_SOURCE")"
 cd "$(dirname "$(readlink -f "$BASH_SOURCE")")"
 
-versions=( */)
+versions=( */ )
 versions=( "${versions[@]%/}" )
 
 # get the most recent commit which modified any of "$@"
@@ -72,7 +73,7 @@ for version in "${versions[@]}"; do
 		subVariant="${variant#*-}"
 		[ "$subVariant" != "$variant" ] || subVariant=
 
-		if [ "$variant" = "${latestVariant[$version]}" ]; then
+		if [ "$variant" = "${main[$version]}" ]; then
 			variantAliases+=( "${versionAliases[@]}" )
         fi
 
